@@ -1,0 +1,11 @@
+//@at-root
+@import './Colors.scss';
+@import './Mixins.scss';
+
+// Global styles
+@import './Global.scss';
+
+// Layout styles
+@import './layouts/Header.scss';
+@import './layouts/Container.scss';
+@import './layouts/Footer.scss';

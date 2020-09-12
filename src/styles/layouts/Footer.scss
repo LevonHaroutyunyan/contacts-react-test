@@ -1,0 +1,9 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    &__copyright {
+        &__text {
+            color: $gray-1
+        }
+    }
+}

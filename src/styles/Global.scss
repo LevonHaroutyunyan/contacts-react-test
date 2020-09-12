@@ -1,0 +1,18 @@
+html {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    font-display: swap !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    color: $lightBlack;
+    font-size: $base !important;
+  }
+  .main {
+    margin: auto;
+    max-width: 1920px;
+  }
