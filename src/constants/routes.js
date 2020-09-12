@@ -37,7 +37,7 @@ const PRIVATE_ROUTES = [
 export const RootRouter = () => (
     <>
     <Switch>
-      { authChecker() 
+      { authChecker()
         ? [...PUBLIC_ROUTES, ...PRIVATE_ROUTES].map((route) => (
             <Route key={route.id} exact={route.exact} path={route.path} render={() => <route.component />} />
          ))

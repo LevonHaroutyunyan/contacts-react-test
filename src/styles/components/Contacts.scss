@@ -1,0 +1,31 @@
+.contact {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: 50px;
+    }
+    &__actions {
+        display: flex;
+        justify-content: space-evenly;
+        width: 50%;
+    }
+    &__filters {
+        background: white;
+        padding: 50px;
+        margin-bottom: 20px;
+        width: 50%;
+        display: flex;
+    }
+}
+
+.cardView {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    &__card {
+        width: 300px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+}

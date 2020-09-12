@@ -1,6 +1,7 @@
 .footer {
     display: flex;
     justify-content: center;
+    width: 100vw;
     &__copyright {
         &__text {
             color: $gray-1

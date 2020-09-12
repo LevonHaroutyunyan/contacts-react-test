@@ -4,5 +4,4 @@ export const authChecker = () => {
 
 export const doLogout = () => {
     return localStorage.removeItem('authToken');
-    // also redirect to login page
 }

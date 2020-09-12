@@ -9,3 +9,13 @@ const generateActionTypes = (action) => ({
 
 export const LOGIN = generateActionTypes('LOGIN');
 export const LOGOUT = generateActionTypes('LOGOUT');
+
+// PROFILE
+export const PROFILE = {
+  FIND: generateActionTypes('FIND_PROFILE'),
+};
+
+// CONTACTS
+export const CONTACTS = {
+  FIND: generateActionTypes('FIND_CONTACTS'),
+};

@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { authChecker } from 'utils/authChecker';
 // const { REACT_APP_API_ROOT } = process.env;
+import { randomuser } from './endpoints'; 
 
 export default () => {
-  const token = getToken();
+  const token = authChecker();
   const service = axios.create({
-    // baseURL: REACT_APP_API_ROOT,
+    baseURL: randomuser,
     headers: {
       Authorization: token ? `Bearer ${token}` : null,
     },

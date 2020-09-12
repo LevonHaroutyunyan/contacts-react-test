@@ -1,0 +1,17 @@
+.profile {
+    margin-top: 50px;
+    &__container {
+        display: flex;       
+    }
+    &__center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            margin-right: 20px;
+        }
+    }
+    &__header {
+        text-align: center;
+    }
+}

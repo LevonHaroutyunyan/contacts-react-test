@@ -16,3 +16,8 @@ html {
     margin: auto;
     max-width: 1920px;
   }
+  .perfectCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

@@ -19,7 +19,7 @@ const withAsync = (importComponent) => {
           <C {...this.props} />
         </div>
       ) : (
-        <Spin />
+        <div className='perfectCenter'><Spin /></div>
       );
     }
   };

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Layout, Button, Modal, Form, Input } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { Layout, Button, Modal, Form, Input, Menu, Dropdown, Avatar } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone, DownOutlined, UserOutlined } from '@ant-design/icons';
 import { authChecker, doLogout } from 'utils/authChecker';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link, Redirect } from 'react-router-dom';
 
 
 const { Header } = Layout;
@@ -10,25 +10,73 @@ const { Header } = Layout;
 export default () => {
     const isAuthentificated = authChecker();
     const [popup, setPopUp] = useState(false);
+    const [current, setCurrent] = useState('home');
     const [form] = Form.useForm();
     const history = useHistory();
 
+    const logout = () => {
+        history.push('/');
+        doLogout();
+    }
+
     const handleAuth = () => {
-        !isAuthentificated ? setPopUp(true) : doLogout()
+        !isAuthentificated ? setPopUp(true) : logout();
     }
 
     const onCreate = () => {
-        history.push('/profile');
         localStorage.setItem('authToken', true);
+        // history.push('/profile');
         setPopUp(false);
+        return <Redirect to="/profile"/>
     }
+
+    const handleMenuSelect = (e) => {
+        setCurrent(e.key)
+    }
+
+    const menu = (
+        <Menu>
+            <Menu.Item onClick={() => history.push('/profile')}>Profile</Menu.Item>
+            <Menu.Item onClick={handleAuth}>Logout</Menu.Item>
+        </Menu>
+    )
 
     return (
         <div>
             <Header>
-                <Button type='primary' onClick={handleAuth}>
-                    {!isAuthentificated ? "Sign In" : "Sign Out"}
-                </Button>
+                <Menu mode="horizontal" onClick={handleMenuSelect} selectedKeys={[current]} style={{ background: 'transparent', color: 'white' }}>
+                    <Menu.Item key='home'>
+                        <Link to="/">
+                            HOME
+                        </Link>
+                    </Menu.Item>
+                    {isAuthentificated && <Menu.Item key='contacts'>
+                        <Link to="/profile/contacts">
+                            CONTACTS
+                        </Link>
+    </Menu.Item> }
+                    { isAuthentificated && <Menu.Item key='user'>
+                        { /* check for user and set data  verev@ dir payman@ */}
+                        <Dropdown overlay={menu}>
+                            <span onClick={() => history.push('/profile')}>
+                                user name <DownOutlined />
+                            </span>
+                        </Dropdown>
+
+    </Menu.Item> }
+                    { isAuthentificated && <>
+                        <Avatar size='large' icon={<UserOutlined />} />
+                    </>}
+                    {!isAuthentificated
+                        ? <Menu.Item>
+                            <Button type='primary' onClick={handleAuth}>
+                                Sign In
+                            </Button>
+                        </Menu.Item>
+                        : null
+                    }
+                </Menu>
+
                 <Modal
                     visible={popup}
                     okText="Sign In"
@@ -71,8 +119,8 @@ export default () => {
                         >
                             <Input />
                         </Form.Item>
-                        <Form.Item 
-                            name="password" 
+                        <Form.Item
+                            name="password"
                             label="password"
                             rules={[
                                 {
@@ -85,7 +133,7 @@ export default () => {
                                 }
                             ]}
                         >
-                            <Input.Password type="textarea"  iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}/>
+                            <Input.Password type="textarea" iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)} />
                         </Form.Item>
                     </Form>
                 </Modal>
