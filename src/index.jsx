@@ -8,12 +8,10 @@ import 'antd/dist/antd.css';
 import 'styles/App.scss';
 
 ReactDOM.render(
-  <React.StrictMode>
     <Provider>
       <PersistGate persistor={persistor}>
         <App />
       </PersistGate>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
   document.getElementById('root'),
 );
